@@ -1,7 +1,26 @@
 import { Grid, Group, Text, Badge } from '@mantine/core';
-import { BadgeFactory } from './badgeFactory';
+import { BadgeFactory, IBadgeType } from './badgeFactory';
+import { FC } from 'react';
+import { IPokemonDescription } from '../app/types';
 
-export const DescriptionComponent = () => {
+type Props = {
+  data?: IPokemonDescription,
+}
+
+const makeWeight = (num: number | undefined) => {
+  if (!num) return ""
+  return `${num / 10}kg ( ${Math.round(num / 10 * 2.2 * 100) / 100}lbs )`
+}
+
+const makeHeight = (num: number | undefined) => {
+  if (!num) return ""
+  const val = num * 3.937
+  const r = Math.floor(val)
+  const f = Math.round((val - r) * 100)
+  return `${num / 10}m ( ${r}"${f}' )`
+}
+
+export const DescriptionComponent: FC<Props> = ({ data }) => {
   const my = "2.1rem"
 
   return (
@@ -15,16 +34,14 @@ export const DescriptionComponent = () => {
           <Text my={my}>Type</Text>
         </Grid.Col>
         <Grid.Col span={9}>
-          <Text my={my}>#1</Text>
-          <Text my={my}>0.7 m</Text>
-          <Text my={my}>6.9 kg</Text>
+          <Text my={my}>{`#${data?.id}`}</Text>
+          <Text my={my}>{makeHeight(data?.height)}</Text>
+          <Text my={my}>{makeWeight(data?.weight)}</Text>
           <Group>
-            <Badge color="green" size="lg" radius="md">Badge</Badge>
-            <Badge color="green" size="lg" radius="md">Badge</Badge>
+            {data?.abilities.map(ab => <Badge key={ab} color="green" size="lg" radius="md">{ab}</Badge>)}
           </Group>
           <Group>
-            <BadgeFactory type='grass' my={my} />
-            <BadgeFactory type='poison' my={my} />
+            {data?.type.map(t => <BadgeFactory key={t} type={t as IBadgeType} my={my} />)}
           </Group>
         </Grid.Col>
       </Grid>

@@ -100,7 +100,7 @@ const mapping = {
 }
 
 type Props = {
-  type: keyof typeof mapping,
+  type: IBadgeType,
   [key: string]: unknown,
 }
 
@@ -118,3 +118,5 @@ export const BadgeFactory: FC<Props> = ({ type, ...rest }) => {
     </Badge>
   )
 }
+
+export type IBadgeType = (keyof typeof mapping);
