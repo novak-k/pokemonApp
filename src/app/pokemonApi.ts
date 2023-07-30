@@ -46,15 +46,24 @@ type StatObj = {
   name: string,
 }
 
+
+type SearchResponse = {
+  count: number
+  results: NameUrlTuple[]
+}
+
+type SelectData = {
+  value: string
+  label: string
+}
+
 export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (builder) => ({
     getPokemonByName: builder.query<IPokemon, string>({
       query: (name) => `pokemon/${name}`,
-      transformResponse: (response: PokemonResponse) => {
-        console.log(response);
-        
+      transformResponse: (response: PokemonResponse) => { 
         const model: IPokemon = {
           title: {
             title: response.name,
@@ -77,9 +86,17 @@ export const pokemonApi = createApi({
           }
         }
         return model;
-      }
+      },
     }),
+
+    searchPokemons: builder.query<SelectData[], void>({
+      query: () => `pokemon?limit=100000&offset=0`,
+      transformResponse: (response: SearchResponse) => { 
+        return response.results.map(res => ({label: res.name.toUpperCase(), value: res.name}))
+      },
+    }),
+
   }),
 });
 
-export const { useGetPokemonByNameQuery } = pokemonApi;
+export const { useGetPokemonByNameQuery , useSearchPokemonsQuery} = pokemonApi;

@@ -34,13 +34,13 @@ export const DescriptionComponent: FC<Props> = ({ data }) => {
           <Text my={my}>Type</Text>
         </Grid.Col>
         <Grid.Col span={9}>
-          <Text my={my}>{`#${data?.id}`}</Text>
-          <Text my={my}>{makeHeight(data?.height)}</Text>
-          <Text my={my}>{makeWeight(data?.weight)}</Text>
-          <Group>
-            {data?.abilities.map(ab => <Badge key={ab} color="green" size="lg" radius="md">{ab}</Badge>)}
+          <Text my={my} data-testid="id">{`#${data ? data.id : ""}`}</Text>
+          <Text my={my} data-testid="height" >{makeHeight(data?.height)}</Text>
+          <Text my={my} data-testid="weight">{makeWeight(data?.weight)}</Text>
+          <Group data-testid="abilities">
+            {data?.abilities.map(ab => <Badge key={ab} size="lg" radius="md">{ab}</Badge>)}
           </Group>
-          <Group>
+          <Group data-testid="type">
             {data?.type.map(t => <BadgeFactory key={t} type={t as IBadgeType} my={my} />)}
           </Group>
         </Grid.Col>

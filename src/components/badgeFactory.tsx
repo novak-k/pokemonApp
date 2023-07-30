@@ -2,7 +2,7 @@ import { Badge, Box, rem } from "@mantine/core";
 import {
   IconActivity, IconBiohazard, IconLeaf, IconFlame, IconButterfly,
   IconDroplet, IconBug, IconBolt, IconWorld, IconWand, IconKarate, IconBrandSupernova,
-  IconHandRock, IconWreckingBall, IconBox, IconGhost2, IconAlien, IconMoonFilled
+  IconHandRock, IconWreckingBall, IconBox, IconGhost2, IconAlien, IconMoonFilled, IconQuestionMark
 } from "@tabler/icons-react";
 import { FC } from "react";
 
@@ -97,6 +97,11 @@ const mapping = {
     style: { boxShadow: "2px 5px 10px 3px rgb( 90 90 90 / 30%)" },
     icon: <IconMoonFilled size={rem(15)} />
   },
+  unknown: {
+    color: 'white',
+    style: { boxShadow: "2px 5px 10px 3px rgb( 90 90 90 / 30%)" },
+    icon: <IconQuestionMark size={rem(15)} />
+  },
 }
 
 type Props = {
@@ -106,14 +111,21 @@ type Props = {
 
 export const BadgeFactory: FC<Props> = ({ type, ...rest }) => {
 
+  const getBadge = (type?: keyof typeof mapping) => {
+    if (!type || !Object.prototype.hasOwnProperty.call(mapping, type)) {
+      return mapping['unknown']
+    }
+    return mapping[type]
+  }
+
   return (
     <Badge
       {...rest}
-      color={mapping[type].color}
+      color={getBadge(type).color}
       size="lg"
       radius="md"
-      sx={mapping[type].style}
-      rightSection={<Box mt={5}>{mapping[type].icon}</Box>}
+      sx={getBadge(type).style}
+      rightSection={<Box mt={5}>{getBadge(type).icon}</Box>}
     >{type.toUpperCase()}
     </Badge>
   )
