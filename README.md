@@ -17,6 +17,8 @@ Data was retrieved from [Pokemon API](https://pokeapi.co).
 The main page is divided into several components, that are connected to each other and to App.tsx via "props", making it easy to maintain and change separate parts. 
 Action such as a search available via Redux.
 
+[Demo Link](https://novak-k.github.io/pokemonApp/)
+
 The unit tests (Jest and React Testing Library) were added in order to cover the main problems with data on the page. 
 
 ![](https://github.com/novak-k/pokemonApp/blob/develop/screenshots/1.jpg)
