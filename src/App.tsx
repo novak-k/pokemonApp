@@ -1,7 +1,7 @@
 import { Container } from '@mantine/core';
 import { useState } from 'react';
 import { SearchPokemon } from './components/searchComponent';
-import { PokemonScreen } from './app/screen/PokemonScreen';
+import { PokemonScreen } from './app/screen/pokemonScreen';
 
 import './App.css';
 

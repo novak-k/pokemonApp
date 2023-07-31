@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1690729150884" clover="3.2.0">
-  <project timestamp="1690729150885" name="All files">
+<coverage generated="1690801913462" clover="3.2.0">
+  <project timestamp="1690801913462" name="All files">
     <metrics statements="35" coveredstatements="35" conditionals="31" coveredconditionals="31" methods="9" coveredmethods="9" elements="75" coveredelements="75" complexity="0" loc="35" ncloc="35" packages="1" files="4" classes="4"/>
     <file name="badgeFactory.tsx" path="/Users/kate/Documents/MA test tasks/moodys/pokemonApp/src/components/badgeFactory.tsx">
       <metrics statements="9" coveredstatements="9" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>

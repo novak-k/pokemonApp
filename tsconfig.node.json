@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
     "composite": true,
-    "module": "commonjs",
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "target": "es6",
     "strict": true,
+    "module": "ESNext",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "./build",
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["vite.config.ts"]
 }

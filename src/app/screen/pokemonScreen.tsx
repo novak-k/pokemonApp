@@ -3,7 +3,6 @@ import { DescriptionComponent } from "../../components/descriptionComponent"
 import { ProgressComponent } from "../../components/progressComponent"
 import { TitleComponent } from "../../components/titleComponent"
 import { useGetPokemonByNameQuery } from "../pokemonApi"
-import { IPokemon } from "../types"
 import { FC } from "react"
 import { ErrorComponent } from "../../components/errorComponent"
 
@@ -11,9 +10,9 @@ type Props = {
   query?: string
 }
 
-export const PokemonScreen: FC<Props> = ({ query }) => {
-  const { data, isLoading, isFetching, isError } = useGetPokemonByNameQuery<IPokemon>(query, {
-    skip: query === null || query === undefined
+export const PokemonScreen: FC<Props> = ({ query = '' }) => {
+  const { data, isLoading, isFetching, isError } = useGetPokemonByNameQuery(query, {
+    skip: !query
   });
 
   return (
